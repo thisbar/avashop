@@ -11,7 +11,7 @@ export default class ProductRepositoryMySQL implements ProductRepository {
 
     async findAll(): Promise<Product[]> {
         // @ts-ignore TODO: Borrar
-        return await Product.findAll({ raw: true });
+        return await Product.findAll({ raw: false });
     }
 
     async delete(product: Product): Promise<void> {
@@ -22,7 +22,7 @@ export default class ProductRepositoryMySQL implements ProductRepository {
      async update(product: Product, newValues: ProductOptionalAttributes) {
         // @ts-ignore
         //return product.set(newValues);
-        return await Product.update(newValues, {where:{id:product.id, include: [Product]}});
+        return product.set(newValues);
         //return product.set(newValues);
     }
 

@@ -33,7 +33,7 @@ export const deleteProduct = asyncHandler(async (req: Request , res: Response) =
 
 export const createProduct = asyncHandler(async (req: Request , res: Response) => {
     const productCreator: ProductCreator = myContainer.get(ProductCreator);
-    const {name, description, category, stock} = req.body;
+    const { name, description, category, stock } = req.body;
 
     const product: Product = await productCreator.create(
         {

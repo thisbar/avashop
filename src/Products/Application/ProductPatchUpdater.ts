@@ -14,9 +14,9 @@ export default class ProductPatchUpdater {
     public async update(productId: number, newValues: ProductOptionalAttributes): Promise<Product> {
         let product: Product = await this.productFinder.find(productId);
 
-        //product = await this.productRepository.update(product, newValues);
-        //await this.productRepository.save(product);
-        console.log(product);
+        product = await this.productRepository.update(product, newValues);
+        await this.productRepository.save(product);
+
         return product;
     }
 }
