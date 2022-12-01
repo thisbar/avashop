@@ -19,11 +19,9 @@ export default class ProductRepositoryMySQL implements ProductRepository {
         await Product.destroy({ where: { id: product.id } });
     }
 
-     async update(product: Product, newValues: ProductOptionalAttributes) {
+    update(product: Product, newValues: ProductOptionalAttributes) {
         // @ts-ignore
-        //return product.set(newValues);
         return product.set(newValues);
-        //return product.set(newValues);
     }
 
     async save(product: Product): Promise<Product> {

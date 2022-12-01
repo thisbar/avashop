@@ -3,13 +3,13 @@ import {Column, DataType, CreatedAt, Model, Table, UpdatedAt} from 'sequelize-ty
 export interface ProductAttributes {
     name: string;
     description: string;
-    url_image: string;
+    url_image?: string;
     category: number;
     stock?: number;
 }
 
 export interface ProductOptionalAttributes {
-    name: string;
+    name?: string;
     description?: string;
     url_image?: string;
     category?: number;
@@ -24,8 +24,8 @@ export default class Product extends Model<ProductAttributes> {
     @Column({type: DataType.STRING})
     private description!: string;
 
-    @Column({type: DataType.STRING})
-    private url_image?: string;
+    @Column({type: DataType.STRING, allowNull: true})
+    private url_image?: string | null;
 
     @Column({type: DataType.INTEGER})
     private category!: number;

@@ -4,6 +4,7 @@ dotenv.config()
 import express = require('express');
 import sequelize from "../etc/sequelize";
 import {json} from "express";
+import fileUpload from "express-fileupload";
 import router from "../routes/index";
 import errorMiddleware from "../src/shared/Infrastructure/Http/errorMiddleware";
 
@@ -17,7 +18,16 @@ try {
 
 const app: express.Application = express();
 
-app.use(json())
+app.use(json());
+app.use(fileUpload({
+    useTempFiles : true,
+    tempFileDir : 'tmp',
+    limits: {
+        fileSize: 10000000, // Around 10MB
+    },
+    abortOnLimit: true,
+}));
+
 app.use('/api', router);
 app.use(errorMiddleware);
 const port = process.env.PORT || 3000;
